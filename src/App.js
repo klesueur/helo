@@ -10,7 +10,7 @@ import './App.css'
 function App(props) {
   return (
     <div className="App">
-      {props.isLoggedIn ? <Auth /> : <Nav /> }
+      {props.location.pathname === '/' ? <Auth /> : <Nav /> }
       
       {routes}
     </div>
