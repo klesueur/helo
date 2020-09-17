@@ -18,8 +18,11 @@ app.use(session({
 }))
 
 
-//endpoints below
-app.post('/auth/register', controller.register)
+//#auth endpoints below
+app.post('/api/auth/register', controller.register)
+app.post('/api/auth/login', controller.login)
+
+//more endpoints below
 
 
 

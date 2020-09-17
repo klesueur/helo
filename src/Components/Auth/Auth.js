@@ -17,6 +17,10 @@ export default class Auth extends Component {
     }
 
     handleLogin = () => {
+        
+    }
+
+    handleRegister = () => {
         const {username, password} = this.state
         axios.post('/auth/register', {username, password}).then((res) => {
             //needs to be logged in here
@@ -49,7 +53,8 @@ export default class Auth extends Component {
                 </div>
                 <div>
                     <button> Login </button>
-                    <button onClick={() => this.handleLogin()}> Register </button>
+                    
+                    <button onClick={() => this.handleRegister()}> Register </button>
                 </div>
             
             </div>

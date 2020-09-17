@@ -1,3 +1,3 @@
 ALTER TABLE users
-ALTER password
+ALTER hash
 TYPE text;
