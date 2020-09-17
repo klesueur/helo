@@ -1,4 +1,4 @@
 INSERT INTO users 
-(username, hash)
+(username, password)
 VALUES ($1, $2)
 returning id, username;

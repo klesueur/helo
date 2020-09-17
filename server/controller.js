@@ -33,6 +33,8 @@ module.exports = {
         const db = req.app.get('db')
         const {username, password} = req.body
 
+        const [existingUser] = await db.check_user([username])
+
         const isAuthenticated = bcrypt.compareSync(password, existingUser.hash)
         //existingUser is not defined
 
