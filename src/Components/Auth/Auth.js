@@ -20,7 +20,7 @@ export default class Auth extends Component {
         const {username, password} = this.state
         axios.post('/api/auth/login', {username, password})
         .then((res) => {
-            this.props.loginUser(res.data)
+            // this.props.loginUser(res.data)
             this.props.history.push('/dashboard')
         })
     }
@@ -28,7 +28,8 @@ export default class Auth extends Component {
     handleRegister = () => {
         const {username, password} = this.state
         axios.post('/api/auth/register', {username, password}).then((res) => {
-            this.props.loginUser(res.data)
+            //this.props.loginUser is not defined
+            // this.props.loginUser(res.data)
             this.props.history.push('/dashboard')
         })
         .catch((err) => {

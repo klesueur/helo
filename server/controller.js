@@ -34,6 +34,7 @@ module.exports = {
         const {username, password} = req.body
 
         const isAuthenticated = bcrypt.compareSync(password, existingUser.hash)
+        //existingUser is not defined
 
         if(!isAuthenticated) {
             return res.status(403).send('Incorrect username or password')
