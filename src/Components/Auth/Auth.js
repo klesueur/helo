@@ -23,6 +23,9 @@ export default class Auth extends Component {
             // this.props.loginUser(res.data)
             this.props.history.push('/dashboard')
         })
+        .catch((err) => {
+            alert(err.message)
+        })
     }
 
     handleRegister = () => {

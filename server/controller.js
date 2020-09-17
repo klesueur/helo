@@ -8,6 +8,7 @@ module.exports = {
     TODO hash the password using bcrypt
     TODO create a new user in database
     TODO respond with newly create user
+    TODO -- ADD CHECK USERNAME
     */
         //Below <- for checking user eventually?
         const db = req.app.get('db') 
@@ -34,8 +35,12 @@ module.exports = {
         const {username, password} = req.body
 
         const [existingUser] = await db.check_user([username])
+        
+        if (!existingUser) {
+            return res.status(404).send('User not found')
+        }
 
-        const isAuthenticated = bcrypt.compareSync(password, existingUser.hash)
+        const isAuthenticated = bcrypt.compareSync(password, existingUser.password)
         //existingUser is not defined
 
         if(!isAuthenticated) {
