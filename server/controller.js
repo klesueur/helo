@@ -14,9 +14,18 @@ module.exports = {
         const db = req.app.get('db') 
 
         const {username, password} = req.body
+
+        // preventing duplicate usernames being registered
+        const [user] = await db.check_user([username])
+        if (user) {
+            return res.status(409).send('User already exists. Please login using the correct username or register a new user.')
+        }
+
+        //or actually create/register the new user
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
         const [newUser] = await db.register_user([username, hash])
+
         //need to create req.session.user in a module somewhere
         req.session.user = newUser
 
