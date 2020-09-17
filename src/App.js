@@ -10,7 +10,7 @@ import './App.css'
 function App(props) {
   return (
     <div className="App">
-      {props.location.pathname === '/' ? <Auth /> : <Nav /> }
+      {props.location.pathname === '/' ? null : <Nav /> }
       
       {routes}
     </div>

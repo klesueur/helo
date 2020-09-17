@@ -19,6 +19,8 @@ app.use(session({
 
 
 //endpoints below
+app.post('/auth/register', controller.register)
+
 
 
 massive({

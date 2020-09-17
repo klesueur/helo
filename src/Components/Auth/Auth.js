@@ -18,7 +18,13 @@ export default class Auth extends Component {
 
     handleLogin = () => {
         const {username, password} = this.state
-        axios.post()
+        axios.post('/auth/register', {username, password}).then((res) => {
+            //needs to be logged in here
+            this.props.history.push('/dashboard')
+        })
+        .catch((err) => {
+            alert(err.message)
+        })
     }
     
     render() {
@@ -43,7 +49,7 @@ export default class Auth extends Component {
                 </div>
                 <div>
                     <button> Login </button>
-                    <button> Register </button>
+                    <button onClick={() => this.handleLogin()}> Register </button>
                 </div>
             
             </div>
