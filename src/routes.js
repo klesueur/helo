@@ -14,7 +14,7 @@ export default(
         <Route path='/post/:postid' component={Post} />
         <Route path='/new' component={Form} />
 
-        /* Below is option for redirection per Andrew */
+        {/*  Below is option for redirection per Andrew */}
         <Route render={ () => <Redirect to='/' />} />
 
     </Switch>
