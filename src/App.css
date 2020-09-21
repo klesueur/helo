@@ -2,16 +2,37 @@
   text-align: center;
 }
 
+.dashboard-search-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-area {
+  display: flex;
+  align-items: center;
+}
+
 .search-button {
+  height: 21px;
+  width: 21px;
   background-color: #ff9770;
   padding: 2px;
   border-radius: 2px;
+
 }
 
 .reset-button {
+  height: 25px;
   border: none;
   padding: 5px 10px;
   color: white;
   background-image: radial-gradient(circle at 50% -46%,#737373,#403d39);
   border-radius: 2px;
+}
+
+.my-posts-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
