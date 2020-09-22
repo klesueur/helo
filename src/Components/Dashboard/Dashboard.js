@@ -5,12 +5,16 @@ export default class Dashboard extends Component {
         super()
 
         this.state = {
-            searchInput: ''
+            posts: [],
+            searchInput: '',
+            userPosts: true
         }
     }
 
+
+
     handleInput = (e) => {
-        // console.log('hi from input', e.target.value)
+        console.log('hi from input', e.target.value)
         this.setState({
             [e.target.name]: e.target.value,
         })
@@ -19,8 +23,19 @@ export default class Dashboard extends Component {
     handleSearch() {
 
     }
+
+    handleCheckbox = (e) =>{
+        console.log('im the checkbox', e.target.checked)
+        this.setState({ userPosts: e.target.checked })
+    }
+
+  
     
     render() {
+
+        let mappedPosts = this.state.posts.map((post, index) => {
+            return post={post} key={post.id}
+        })
 
         return (
             <div>
@@ -38,12 +53,12 @@ export default class Dashboard extends Component {
                     </div>
                     <div className='my-posts-checkbox'>
                     <p> My Posts </p>
-                    <input type='checkbox' />
+                    <input type='checkbox' onChange={this.handleCheckbox} />
                     </div>
                 </div>
 
-                <div>
-                    
+                <div className='posts'>
+                    <ul> {mappedPosts} </ul>
                 </div>
             </div>
         )

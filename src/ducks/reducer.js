@@ -3,8 +3,8 @@ import axios from 'axios'
 
 const initialState = {
     //Should I be holding empty {} in properties below?
-    username: 'saltcuzzi',
-    profilePicture: 'https://robohash.org/24.218.243.24.png',
+    username: '',
+    profilePicture: '',
     userId: null
 }
 
