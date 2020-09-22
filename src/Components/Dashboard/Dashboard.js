@@ -43,9 +43,19 @@ export default class Dashboard extends Component {
     
     render() {
 
-        let mappedPosts = this.state.posts.map((post, index) => {
-            return post={post} 
+        const mappedPosts = this.state.posts.map((post) => {
+            console.log('posts data test', post)
+            return (
+                <div>
+                    <h3> {post.title} </h3>
+                    <div>
+                        <p> by {post.author} </p>
+                        <p> src={post.authorPicture} </p>
+                    </div>
+                </div>
+            )
         })
+        console.log('mappedPosts', mappedPosts)
 
         return (
             <div>
