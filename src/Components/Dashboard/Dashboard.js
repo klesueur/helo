@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, {Component} from 'react'
 
 export default class Dashboard extends Component {
@@ -11,6 +12,14 @@ export default class Dashboard extends Component {
         }
     }
 
+
+    getPosts = () => {
+        axios.get('/api/posts/:userid').then((res) => {
+            this.setState({
+                posts: res.data
+            })
+        })
+    }
 
 
     handleInput = (e) => {
@@ -29,12 +38,13 @@ export default class Dashboard extends Component {
         this.setState({ userPosts: e.target.checked })
     }
 
+
   
     
     render() {
 
         let mappedPosts = this.state.posts.map((post, index) => {
-            return post={post} key={post.id}
+            return post={post} 
         })
 
         return (
