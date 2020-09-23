@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import Post from '../Post/Post'
 //DO I NEED TO IMPORT A DIFF COMPONENT CONTAINING MAPPED STATE? HERE OR MAPTOSTATEPROPS BELOW?
 
 class Dashboard extends Component {
@@ -34,33 +35,63 @@ class Dashboard extends Component {
         })
     }
 
-    handleSearch() {
+    // handleSearch() {
 
-    }
+    // }
 
     handleCheckbox = (e) =>{
         console.log('im the checkbox', e.target.checked)
         this.setState({ userPosts: e.target.checked })
     }
 
+    handleClick = () => {
+        const {userInput: content } = this.state
+        axios.post('/api/posts', {content}).then((res) => {
+            this.setState({
+                posts: res.data,
+                userInput: ''
+            })
+        })
+    }
 
+    handleEdit = (postid, content) => {
+        axios.put(`/api/posts/${postid}`, {content}).then((res) => {
+            this.setState({
+                posts: res.data
+            })
+        })
+    }
+
+    handleDelete = (postid) => {
+        axios.delete(`/api/posts/${postid}`).then((res) => {
+            this.setState({
+                posts: res.data
+            })
+        })
+    }
   
     
     render() {
 console.log(this.state.posts)
-        const mappedPosts = this.state.posts.map((post) => {
-            console.log('posts data test', post)
+        const mappedPosts = this.state.posts.map((post, index) => {
+            // console.log('posts data test', post)
             return (
-                <div>
-                    <h3> {post.title} </h3>
-                    <div>
-                        <p> by {post.author_id} </p>
-                        <p> src={post.img} </p>
-                    </div>
-                </div>
+                <Post
+                post={post}
+                key={post.id}
+                handlClick={this.handleClick}
+                handleEdit={this.handleEdit}
+                handleDelete={this.handleDelete} />
+                // <div>
+                //     <h3> {post.title} </h3>
+                //     <div>
+                //         <p> by {post.author_id} </p>
+                //         <p> src={post.img} </p>
+                //     </div>
+                // </div>
             )
         })
-        console.log('mappedPosts', mappedPosts)
+        // console.log('mappedPosts', mappedPosts)
 
         return (
             <div>

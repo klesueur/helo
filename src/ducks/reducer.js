@@ -26,12 +26,18 @@ export function logoutUser(){
     }
 }
 
+// export function getUser() {
+
+// }
+
 
 export default function reducer(state = initialState, action) {
     
     switch(action.type){
         case LOGIN:
             return { ...state, ...action.payload }
+        case LOGOUT_USER:
+            return initialState
         default: 
             return state
     }
