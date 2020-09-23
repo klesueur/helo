@@ -1,7 +1,9 @@
 import axios from 'axios'
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+//DO I NEED TO IMPORT A DIFF COMPONENT CONTAINING MAPPED STATE? HERE OR MAPTOSTATEPROPS BELOW?
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
     constructor() {
         super()
 
@@ -12,9 +14,12 @@ export default class Dashboard extends Component {
         }
     }
 
+//component did mount below
+    componentDidMount() {
+        console.log('cdm', this.props)
+        // if (!this.props.) IF STATEMENT HERE
 
-    getPosts = () => {
-        axios.get('/api/posts/:userid').then((res) => {
+        axios.get('/api/posts/').then((res) => {
             this.setState({
                 posts: res.data
             })
@@ -42,15 +47,15 @@ export default class Dashboard extends Component {
   
     
     render() {
-
+console.log(this.state.posts)
         const mappedPosts = this.state.posts.map((post) => {
             console.log('posts data test', post)
             return (
                 <div>
                     <h3> {post.title} </h3>
                     <div>
-                        <p> by {post.author} </p>
-                        <p> src={post.authorPicture} </p>
+                        <p> by {post.author_id} </p>
+                        <p> src={post.img} </p>
                     </div>
                 </div>
             )
@@ -84,4 +89,6 @@ export default class Dashboard extends Component {
         )
     }
 }
+const mapStateToProps = (state) => state
 
+export default connect(mapStateToProps)(Dashboard)

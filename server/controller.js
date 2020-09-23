@@ -1,4 +1,8 @@
 const bcrypt = require('bcryptjs')
+const getAllPosts = async (db) => {
+    const posts = await db.get_posts()
+    return posts
+}
 
 module.exports = {
 
@@ -61,6 +65,46 @@ module.exports = {
         req.session.user = existingUser
 
         res.status(200).send(req.session.user)
+    }, 
+
+    getAllPosts: async (req, res) => {
+        const db = req.app.get('db')
+        const posts = await getAllPosts(db)
+        res.status(200).send(posts)
+    },
+
+    getPosts: async (req, res) => {
+        const db = req.app.get('db')
+        const {userid} = req.params
+
+        const posts = await db.get_user_posts([userid])
+        res.status(200).send(posts)
+    },
+
+    addPost: async (req, res) => {
+        const db = req.app.get('db')
+        const {userid} = req.params
+        const {title, img, content} = req.body
+        await db.add_post([userid, title, img, content])
+        const posts = await getAllPosts(db)
+        res.status(200).send(posts)
+    },
+
+    deletePost: async (req, res) => {
+        const db = req.app.get('db')
+        const {postid} = req.params
+        await db.delete_post([postid])
+        const posts = await getAllPosts(db)
+        res.status(200).send(posts)
+    }, 
+
+    editPost: async (req, res) => {
+        const db = req.app.get('db')
+        const {postid} = req.params
+        const {content} = req.body
+        await db.edit_post([content, postid])
+        const posts = await getAllPosts(db)
+        res.status(200).send(posts)
     }
 
 }

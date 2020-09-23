@@ -21,9 +21,13 @@ app.use(session({
 //#auth endpoints below
 app.post('/api/auth/register', controller.register)
 app.post('/api/auth/login', controller.login)
+app.get('/api/posts/:userid', controller.getPosts)
+app.get('/api/posts/', controller.getAllPosts)
 
 //more endpoints below
-
+app.post('/api/posts/:userid', controller.addPost)
+app.delete('/api/posts/:postid', controller.deletePost)
+app.put('/api/posts/:postid', controller.editPost)
 
 
 massive({
