@@ -7,15 +7,27 @@ class Post extends Component {
     super()
 
     this.state ={
-        isEditing: false,
+        isEditing: false
     }
-}
+  }
+
+  toggleEdit = () => {
+      this.setState({
+          isEditing: !this.state.isEditing
+      })
+  }
 
 
     
-    render() {
-                
-        return (
+    render() {             
+        return this.state.isEditing ? (
+           <Form 
+           handleEdit={this.props.handleEdit}
+           handleDelete={this.props.handleDelete}
+           post={this.props.post}
+           toggleEdit={this.toggleEdit}
+            />
+        ) : (
             <div>
                 <h3> {this.props.post.title} </h3>
                 <div>
