@@ -27,7 +27,7 @@ export default class Form extends Component {
     }
 
     handleSave = () => {
-        this.props.handleEdit(this.props.post.iod, this.state.userInput)
+        this.props.handleEdit(this.props.post.id, this.state.userInput)
         this.props.toggleEdit()
     }
 
@@ -36,9 +36,18 @@ export default class Form extends Component {
 
         return (
             <div>
-                Form
-
-                
+                <div>
+                    <input value={this.state.userInput}
+                      onChange={(e) => { this.handleChange(e) }} />
+                </div>
+                <div>
+                    <button onChange={() => { this.handleCancel() }}>
+                        Cancel
+                    </button>
+                    <button onChange={() => { this.handleSave() }}>
+                        Save
+                    </button>
+                </div>
 
             </div>
         )
